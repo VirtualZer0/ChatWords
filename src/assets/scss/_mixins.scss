@@ -1,0 +1,61 @@
+@mixin neumorph-anim-full ($name, $size, $blur) {
+
+  @keyframes neumorph-anim-#{name} {
+
+    0% {
+      box-shadow:
+        inset $size $size $blur var(--c_shadow-1),
+        inset -$size -$size $blur var(--c_shadow-2);
+    }
+
+    50% {
+      box-shadow: none;
+    }
+
+    100% {
+      box-shadow: 0 0 10px #aaa;
+    }
+
+  }
+
+}
+
+@mixin basic-neumorph-shadow ($size, $blur, $inset: 0, $color1: var(--c_shadow-1), $color2: var(--c_shadow-2)) {
+
+  @if $inset != 0 {
+    box-shadow:
+      inset $size $size $blur $color1,
+      inset -#{$size} -#{$size} $blur $color2;
+  }
+
+  @else {
+    box-shadow:
+      $size $size $blur $color1,
+      -#{$size} -#{$size} $blur $color2;
+  }
+
+}
+
+@mixin trans-neumorph-shadow (
+    $size, $blur, $inset: 0,
+    $color1: var(--c_shadow-1), $color2: var(--c_shadow-2),
+    $tColor1: var(--c_transparent-shadow-1), $tColor2: var(--c_transparent-shadow-2)
+  ) {
+
+  @if $inset != 0 {
+    box-shadow:
+      inset $size $size $blur $color1,
+      inset -#{$size} -#{$size} $blur $color2,
+      0px 0px 0px $tColor1,
+      0px 0px 0px $tColor2;
+  }
+
+  @else {
+    box-shadow:
+      inset 0px 0px 0px $tColor1,
+      inset 0px 0px 0px $tColor2,
+      $size $size $blur $color1,
+      -#{$size} -#{$size} $blur $color2;
+  }
+
+}

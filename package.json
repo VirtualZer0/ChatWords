@@ -9,7 +9,9 @@
     "i18n:report": "vue-cli-service i18n:report --src \"./src/**/*.?(js|vue)\" --locales \"./src/locales/**/*.json\""
   },
   "dependencies": {
+    "@mdi/font": "^5.9.55",
     "core-js": "^3.6.5",
+    "normalize.css": "^8.0.1",
     "register-service-worker": "^1.7.1",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0",
@@ -18,7 +20,7 @@
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
-    "@intlify/vue-i18n-loader": "^2.1.0",
+    "@intlify/vue-i18n-loader": "^2.1.2",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "@vue/cli-plugin-babel": "~4.5.0",

@@ -1,0 +1,48 @@
+@import './fonts.scss';
+
+:root {
+
+  // Basic colors
+  --c_purple-basic: #8F7FF0;
+  --c_purple-advanced: #9059F6;
+  --c_orange: #FFB74D;
+  --c_red: #E57373;
+
+  // Shadow colors
+  --c_purple-shadow-1: #7A6CCC;
+  --c_purple-shadow-2: #A492FF;
+}
+
+.light-theme {
+  --c_bg: #ECF0F3;
+  --c_shadow-1: #D1D9E6;
+  --c_shadow-2: #FFF;
+  --c_transparent-shadow-1: rgba(209, 217, 230, 0);
+  --c_transparent-shadow-2: rgba(255, 255, 255, 0);
+}
+
+.dark-theme {
+  --c_bg: #292D32;
+  --c_shadow-1: #24262B;
+  --c_shadow-2: #30343A;
+  --c_transparent-shadow-1: rgba(36, 38, 43, 0);
+  --c_transparent-shadow-2: rgba(48, 52, 58, 0);
+}
+
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'M PLUS Rounded 1c', Inter, Arial, sans-serif;
+  background: var(--c_bg);
+  transition: background-color .2s ease-out;
+}
+
+button {
+  border: none;
+  color: inherit;
+  background: inherit;
+  cursor: pointer;
+}

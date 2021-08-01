@@ -1,30 +1,45 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
   <router-view/>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+import { Options, Vue } from 'vue-class-component';
 
-#nav {
-  padding: 30px;
+@Options({
+  mounted() {
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+    if (!localStorage['theme']) {
+      localStorage['theme'] = 'light';
     }
+
+    if (localStorage['theme'] == 'dark') {
+      document.body.classList.remove('light-theme');
+      document.body.classList.add('dark-theme');
+    }
+    else {
+      document.body.classList.remove('dark-theme');
+      document.body.classList.add('light-theme');
+    }
+
   }
+})
+export default class Main extends Vue {}
+</script>
+
+<style lang="scss">
+@import '@/assets/scss/main.scss';
+.test {
+  border-radius: 25px;
+  width: 300px;
+  height: 300px;
+  @include trans-neumorph-shadow(18px, 20px, 0);
+  transition: box-shadow 1s linear;
+  background: #ecf0f3;
 }
+
+.test:hover {
+  @include trans-neumorph-shadow(18px, 20px, 1);
+  transition: box-shadow 1s linear;
+}
+
 </style>

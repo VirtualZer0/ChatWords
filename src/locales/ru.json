@@ -1,3 +1,12 @@
 {
-  "message": "hello i18n !!"
+  "changeTheme": "Изменить тему",
+  "splashText1": "Составляйте слова из указанных букв и отправляйте их в чат",
+  "loginTitle": "Введите имя Twitch-канала",
+  "startGame": "Начать игру",
+  "level": "уровень",
+  "record": "рекорд",
+  "createdBy": "Создано VirtualZer0",
+  "withOpenSource": "Проект с открытым исходным кодом",
+  "words": "слов",
+  "nowInDatabase": "сейчас в базе"
 }
