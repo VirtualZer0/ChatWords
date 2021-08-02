@@ -65,7 +65,7 @@ import Logo from '@/components/Logo.vue'
   methods: {
     startGame() {
       alert('Вот говоришь людям, что готова только главная, а они все равно нажимают');
-      alert('За это ты будешь отправлен в бесконечное цукуёми');
+      alert('За это ты будешь отправлен в вечное цукиёми');
 
       let okay = true;
       while(okay) {
