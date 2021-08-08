@@ -8,16 +8,12 @@ import i18n from './i18n'
 import 'normalize.css'
 import '@mdi/font/css/materialdesignicons.min.css'
 
+import soundPlayer from './utils/SoundPlayer';
+
 createApp(App)
   .use(i18n)
   .use(store)
   .use(router)
   .mount('#app');
 
-
-/*fetch('/words/ru.txt')
-.then(res => res.text())
-.then(res => {
-  words = res.split(',');
-  console.log(words);
-});*/
+soundPlayer.loadSfx();

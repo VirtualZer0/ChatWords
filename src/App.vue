@@ -4,9 +4,24 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
+import wordsDictionaryCollection from './utils/WordsDictionaryCollection';
+
+declare global {
+  interface Window { words: any; }
+}
 
 @Options({
   mounted() {
+
+    wordsDictionaryCollection.addDictionary('ru', 'ru')
+    .then(() => {
+      this.$store.dispatch(
+        'setCurrentWordsCount',
+        wordsDictionaryCollection.getDictionary('ru').getWords().length
+      )
+    });
+
+    window.words = wordsDictionaryCollection.getDictionary('ru');
 
     if (!localStorage['theme']) {
       localStorage['theme'] = 'light';

@@ -38,7 +38,7 @@
 
       <div class="main-screen-footer-info">
         <div class="main-screen-footer-info-title">
-          0 {{$t('words')}}
+          {{$store.state.currentWordsCount}} {{$t('words')}}
         </div>
         <div class="main-screen-footer-info-subtitle">
           {{$t('nowInDatabase')}}
@@ -53,6 +53,8 @@ import { Options, Vue } from 'vue-class-component';
 import ThemeSwitcher from '@/components/ThemeSwitcher.vue';
 import Logo from '@/components/Logo.vue'
 
+import soundPlayer from '../utils/SoundPlayer';
+
 @Options({
   components: {
     ThemeSwitcher, Logo
@@ -64,13 +66,7 @@ import Logo from '@/components/Logo.vue'
 
   methods: {
     startGame() {
-      alert('Вот говоришь людям, что готова только главная, а они все равно нажимают');
-      alert('За это ты будешь отправлен в вечное цукиёми');
-
-      let okay = true;
-      while(okay) {
-        alert('Ты это заслужил');
-      }
+      soundPlayer.playSfx('game_over');
     }
   }
 })
