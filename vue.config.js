@@ -15,7 +15,10 @@ module.exports = {
     name: "Chat Words",
     themeColor: "#8F7FF0",
     msTileColor: "#fff",
-    manifestPath: "manifest.json?1"
+    manifestPath: "manifest.json?1",
+    workboxOptions: {
+      skipWaiting: true
+    }
   },
 
   css: {
