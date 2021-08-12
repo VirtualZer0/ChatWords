@@ -3,7 +3,7 @@
 :root {
 
   // Basic colors
-  --c_purple-basic: #8F7FF0;
+  --c_purple: #8F7FF0;
   --c_purple-advanced: #9059F6;
   --c_orange: #FFB74D;
   --c_red: #E57373;
@@ -15,6 +15,7 @@
 
 .light-theme {
   --c_bg: #ECF0F3;
+  --c_neg: #222;
   --c_shadow-1: #D1D9E6;
   --c_shadow-2: #FFF;
   --c_transparent-shadow-1: rgba(209, 217, 230, 0);
@@ -23,6 +24,7 @@
 
 .dark-theme {
   --c_bg: #292D32;
+  --c_neg: #fff;
   --c_shadow-1: #24262B;
   --c_shadow-2: #30343A;
   --c_transparent-shadow-1: rgba(36, 38, 43, 0);
@@ -45,4 +47,16 @@ button {
   color: inherit;
   background: inherit;
   cursor: pointer;
+}
+
+.orange {
+  color: var(--c_orange);
+}
+
+.red {
+  color: var(--c_red);
+}
+
+.purple {
+  color: var(--c_purple);
 }

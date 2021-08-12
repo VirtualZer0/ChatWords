@@ -1,7 +1,7 @@
 {
     "theme_color": "#8F7FF0",
     "background_color": "#FFFFFF",
-    "display": "browser",
+    "display": "minimal-ui",
     "scope": "/",
     "start_url": "/",
     "name": "Chat Words",

@@ -19,7 +19,7 @@ export default class Logo extends Vue {}
 <style lang="scss">
 
 .logo {
-
+  max-width: 210px;
   font-size: 42px;
   font-weight: bolder;
   display: flex;
@@ -30,7 +30,7 @@ export default class Logo extends Vue {}
   &-first-line {
     display: flex;
     width: 100%;
-    color: var(--c_purple-basic);
+    color: var(--c_purple);
   }
 
   &-letter {
@@ -44,12 +44,12 @@ export default class Logo extends Vue {}
   }
 
   &-letter.outline {
-    border: 1px solid var(--c_purple-basic);
+    border: 1px solid var(--c_purple);
   }
 
   &-letter.inverted {
     color: var(--c_bg);
-    background: var(--c_purple-basic);
+    background: var(--c_purple);
     transition: color .2s ease-out;
   }
 

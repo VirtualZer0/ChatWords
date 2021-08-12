@@ -8,5 +8,17 @@
   "createdBy": "Создано VirtualZer0",
   "withOpenSource": "Проект с открытым исходным кодом",
   "words": "слов",
-  "nowInDatabase": "сейчас в базе"
+  "nowInDatabase": "сейчас в базе",
+  "points": "очки",
+  "gameInfo": "Составьте <span class=\"orange\">существительное</span> из букв ниже",
+  "gameNoModificators": "Отправьте отгаданное слово в <span class=\"orange\">чат</span>",
+  "gameModificator": "Здесь есть ",
+  "gameModifcatorEndOne": " буква",
+  "gameModificatorEndMultiple": " буквы",
+  "oneFakeLetter": "<span class=\"red\">одна фальшивая</span>",
+  "multipleFakeLetters": "<span class=\"red\">несколько фальшивых</span>",
+  "gameModificatorAnd": " и ",
+  "oneHiddenLetter": "<span class=\"orange\">одна скрытая</span>",
+  "multipleHiddenLetters": "<span class=\"orange\">несколько скрытых</span>",
+  "playerAddWord": "угадывает слово"
 }

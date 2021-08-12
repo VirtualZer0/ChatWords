@@ -61,7 +61,7 @@ export default class ThemeSwitcher extends Vue {}
 
 .theme-switcher {
 
-  color: var(--c_purple-basic);
+  color: var(--c_purple);
   font-size: 21px;
   font-weight: bold;
 

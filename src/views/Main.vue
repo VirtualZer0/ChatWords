@@ -1,5 +1,6 @@
 <template>
   <div class="screen main-screen">
+    <countdown v-if="countdownStarted" @expired="startGame" :from="5"/>
     <header class="main-screen-header">
       <logo/>
       <theme-switcher/>
@@ -14,13 +15,13 @@
       <div class="main-screen-login">
         <div class="main-screen-login-title">{{$t('loginTitle')}}</div>
         <input type="text" v-model="twitchChannel" name="twitchChannel" class="main-screen-login-input"/>
-        <button class="main-screen-login-button" @click="startGame">{{$t('startGame')}}</button>
+        <button class="main-screen-login-button" :class="{pressed: buttonPressed}" @click="startCountdown">{{$t('startGame')}}</button>
       </div>
     </main>
     <footer class="main-screen-footer">
       <div class="main-screen-footer-info">
         <div class="main-screen-footer-info-title">
-          0 {{$t('level')}}
+          {{$store.state.bestLevel}} {{$t('level')}}
         </div>
         <div class="main-screen-footer-info-subtitle">
           {{$t('record')}}
@@ -52,22 +53,49 @@
 import { Options, Vue } from 'vue-class-component';
 import ThemeSwitcher from '@/components/ThemeSwitcher.vue';
 import Logo from '@/components/Logo.vue'
+import Countdown from '@/components/Countdown.vue';
 
-import soundPlayer from '../utils/SoundPlayer';
+import twitch from '../services/twitchConnect';
 
 @Options({
   components: {
-    ThemeSwitcher, Logo
+    ThemeSwitcher, Logo, Countdown
   },
 
   data: () => ({
-    twitchChannel: ''
+    twitchChannel: '',
+    countdownStarted: false,
+    buttonPressed: false
   }),
 
   methods: {
+    startCountdown() {
+      this.buttonPressed = true;
+
+      if (this.twitchChannel != '') {
+        this.twitchChannel = this.twitchChannel.replace('https://www.twitch.tv/', '');
+        twitch.setChannel(this.twitchChannel);
+
+        if (twitch.connected) {
+          twitch.close();
+        }
+
+        twitch.events.onConnect = () => {
+          this.countdownStarted = true;
+          this.$store.dispatch('setChannel', this.twitchChannel);
+        }
+
+        twitch.connect();
+      }
+    },
+
     startGame() {
-      soundPlayer.playSfx('game_over');
+      this.$router.push('/game');
     }
+  },
+
+  mounted () {
+    this.twitchChannel = this.$store.state.channel;
   }
 })
 export default class Main extends Vue {}
@@ -89,7 +117,7 @@ export default class Main extends Vue {}
   }
 
   &-main {
-    background: var(--c_purple-basic);
+    background: var(--c_purple);
     display: grid;
     padding: 60px 90px;
     grid-template-columns: .8fr 1fr;
@@ -113,7 +141,7 @@ export default class Main extends Vue {}
       }
 
       &-subtitle {
-        color: var(--c_purple-basic);
+        color: var(--c_purple);
         font-size: 21px;
         font-weight: 300;
       }
@@ -166,17 +194,18 @@ export default class Main extends Vue {}
     }
 
     &-button {
+      transition: box-shadow .1s ease-in-out;
       width: 50%;
       height: 75px;
-      @include basic-neumorph-shadow(10px, 18px, 0, #7A6CCC, #A492FF);
+      @include trans-neumorph-shadow(10px, 18px, 0, #7A6CCC, #A492FF);
       border-radius: 25px;
       font-size: 28px;
       font-weight: bold;
     }
-  }
 
-  &-logo {
-    height: 75px;
+    &-button.pressed {
+      @include trans-neumorph-shadow(10px, 18px, 1, #7A6CCC, #A492FF);
+    }
   }
 
 }

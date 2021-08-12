@@ -5,18 +5,18 @@ export class TextMessage {
 
   /**
    *
-   * @param {Number|String} userId - Unique user id
-   * @param {String} userName - Displayed user name
-   * @param {String} text - Message text
-   * @param {String} source - Source of message, "yt" for YouTube, "tw" fro Twitch
+   * @param {number|string} userId - Unique user id
+   * @param {string} userName - Displayed user name
+   * @param {string} text - Message text
+   * @param {string} source - Source of message, "yt" for YouTube, "tw" fro Twitch
    */
 
-  userId: String;
-  userName: String;
-  text: String;
-  source: String;
+  userId: string;
+  userName: string;
+  text: string;
+  source: string;
 
-  constructor(userId: String, userName: String, text: String, source: String) {
+  constructor(userId: string, userName: string, text: string, source: string) {
     this.userId = userId;
     this.userName = userName;
     this.text = text.trim();

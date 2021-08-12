@@ -1,5 +1,9 @@
 <template>
-  <router-view/>
+<router-view v-slot="{ Component }">
+  <transition name="change-screen" mode="out-in">
+    <component :is="Component" />
+  </transition>
+</router-view>
 </template>
 
 <script lang="ts">
@@ -12,6 +16,8 @@ declare global {
 
 @Options({
   mounted() {
+
+    this.$store.dispatch('loadSettings');
 
     wordsDictionaryCollection.addDictionary('ru', 'ru')
     .then(() => {
@@ -43,18 +49,17 @@ export default class Main extends Vue {}
 
 <style lang="scss">
 @import '@/assets/scss/main.scss';
-.test {
-  border-radius: 25px;
-  width: 300px;
-  height: 300px;
-  @include trans-neumorph-shadow(18px, 20px, 0);
-  transition: box-shadow 1s linear;
-  background: #ecf0f3;
+
+.change-screen-enter-active,
+.change-screen-leave-active {
+  transition: all 0.5s ease;
 }
 
-.test:hover {
-  @include trans-neumorph-shadow(18px, 20px, 1);
-  transition: box-shadow 1s linear;
+
+.change-screen-enter-from,
+.change-screen-leave-to {
+  opacity: 0;
+  transform: scale(0.9);
 }
 
 </style>
