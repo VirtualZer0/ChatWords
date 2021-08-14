@@ -135,7 +135,7 @@ export class LevelGenerator {
       letters,
       words: anagrams,
       maxPoints,
-      donePoints: Math.round(maxPoints*.7)
+      donePoints: Math.round(maxPoints*.6)
     });
 
   }
