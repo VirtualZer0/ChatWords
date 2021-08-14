@@ -132,6 +132,7 @@ import genWorker from '../utils/GenWorker';
       });
 
       this.points = 0;
+      this.timeOut = false;
     },
 
     gameOver() {
