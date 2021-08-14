@@ -6,7 +6,8 @@ export class SoundPlayer {
     'countdown.wav',
     'game_over.wav',
     'level_complete.wav',
-    'time_almost_over.wav'
+    'time_almost_over.wav',
+    'goal_reached.wav'
   ];
 
   private ctx: AudioContext = new window.AudioContext();

@@ -75,6 +75,7 @@ import genWorker from '../utils/GenWorker';
 
     shuffleTimerId: null,
     timeOut: false,
+    goalReached: false,
     wordsLeft: 0,
 
     newWordMessage: '',
@@ -176,13 +177,20 @@ import genWorker from '../utils/GenWorker';
           console.log(this.wordsLeft);
           this.showMessage(msg.userName, word.word);
 
+          if (this.points >= this.donePoints && !this.goalReached) {
+            soundPlayer.playSfx('goal_reached');
+            this.goalReached = true;
+          }
+          else {
+            soundPlayer.playSfx('correct_letter');
+          }
+
+
           if (!this.players[msg.userName]) {
             this.players[msg.userName] = 0;
           }
 
           this.players[msg.userName] += word.points;
-
-          soundPlayer.playSfx('correct_letter');
 
           // Check if hidden letters will be found
           word.word.split('').forEach(wLetter => {
@@ -203,11 +211,11 @@ import genWorker from '../utils/GenWorker';
 
       if (uncoveredFakeLetters.length == 0) return;
 
-      if (this.wordsLeft/this.words.length < .75 && (uncoveredFakeLetters.length == 2 || this.$store.state.gameState.lvlNumber <= 27)) {
+      if (this.wordsLeft/this.words.length < .70 && (uncoveredFakeLetters.length == 2 || this.$store.state.gameState.lvlNumber <= 27)) {
         uncoveredFakeLetters[0].uncovered = true;
       }
 
-      if (this.wordsLeft/this.words.length < .55 && uncoveredFakeLetters.length == 1) {
+      if (this.wordsLeft/this.words.length < .50 && uncoveredFakeLetters.length == 1) {
         uncoveredFakeLetters[0].uncovered = true;
       }
 

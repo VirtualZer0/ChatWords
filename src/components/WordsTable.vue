@@ -32,6 +32,7 @@ export default class WordsTable extends Vue {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(32%, 1fr));
   grid-template-rows: repeat(auto-fill, 50px);
+  grid-auto-flow: column;
   row-gap: 16px;
   column-gap: 20px;
   padding: 20px;

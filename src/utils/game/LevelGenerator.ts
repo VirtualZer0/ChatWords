@@ -48,7 +48,7 @@ export class LevelGenerator {
     const word = candidates.splice(randPos)[0];
     const anagrams = this.curDict
       .findAnagrams(word, anagramsLength)
-      .sort((a, b) => b.length - a.length)
+      .sort((a, b) => a.length - b.length)
       .map(anagram => new Word({
         word: anagram
       }));
