@@ -5,6 +5,7 @@ export default class Letter {
   fake = false;
   hidden = false;
   uncovered = false;
+  id = 0;
 
   constructor (init?: Partial<Letter>) {
     Object.assign(this, init);

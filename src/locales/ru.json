@@ -12,13 +12,9 @@
   "points": "очки",
   "gameInfo": "Составьте <span class=\"orange\">существительное</span> из букв ниже",
   "gameNoModificators": "Отправьте отгаданное слово в <span class=\"orange\">чат</span>",
-  "gameModificator": "Здесь есть ",
-  "gameModifcatorEndOne": " буква",
-  "gameModificatorEndMultiple": " буквы",
-  "oneFakeLetter": "<span class=\"red\">одна фальшивая</span>",
-  "multipleFakeLetters": "<span class=\"red\">несколько фальшивых</span>",
-  "gameModificatorAnd": " и ",
-  "oneHiddenLetter": "<span class=\"orange\">одна скрытая</span>",
-  "multipleHiddenLetters": "<span class=\"orange\">несколько скрытых</span>",
+  "gameModificator1Red": "Здесь есть одна <span class=\"red\">фальшивая</span> буква",
+  "gameModificator1Red1Orange": "Здесь есть <span class=\"red\">фальшивая</span> и <span class=\"orange\">скрытая</span> буквы",
+  "gameModificator2Red1Orange": "Здесь есть <span class=\"red\">2 фальшивых</span> и <span class=\"orange\">1 скрытая</span> буквы",
+  "gameModificator2Red2Orange": "Здесь есть <span class=\"red\">2 фальшивых</span> и <span class=\"orange\">2 скрытых</span> буквы",
   "playerAddWord": "угадывает слово"
 }

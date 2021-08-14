@@ -1,8 +1,8 @@
 export default class Player {
 
   name: string;
-  allPoints: number = 0;
-  lastPoints: number = 0;
+  allPoints = 0;
+  lastPoints = 0;
 
   constructor(name: string) {
     this.name = name;

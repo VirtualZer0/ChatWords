@@ -9,25 +9,58 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import wordsDictionaryCollection from './utils/WordsDictionaryCollection';
+import genWorker from './utils/GenWorker';
 
 declare global {
   interface Window { words: any; }
 }
 
 @Options({
+
+  methods: {
+
+    handleGenWorkerResponse(ev: {data: {type: string, payload: any}}) : void {
+
+      switch (ev.data.type) {
+
+        case 'loadDictionaryDone':
+          this.$store.dispatch('setCurrentWordsCount', ev.data.payload.wordsCount);
+
+          genWorker.postMessage({
+            type: 'genLevel',
+            payload: {
+              level: 1,
+              settings: {
+                useFakeLetters: true,
+                useHiddenLetters: true
+              }
+            }
+          })
+          break;
+
+        case 'genLevelDone':
+          this.$store.dispatch('setLevel', ev.data.payload.level);
+          break;
+
+      }
+
+    }
+
+  },
+
   mounted() {
 
     this.$store.dispatch('loadSettings');
 
-    wordsDictionaryCollection.addDictionary('ru', 'ru')
-    .then(() => {
-      this.$store.dispatch(
-        'setCurrentWordsCount',
-        wordsDictionaryCollection.getDictionary('ru').getWords().length
-      )
-    });
+    genWorker.onmessage = this.handleGenWorkerResponse;
 
-    window.words = wordsDictionaryCollection.getDictionary('ru');
+    genWorker.postMessage({
+      type: 'loadDictionary',
+      payload: {
+        name: 'ru',
+        source: 'ru'
+      }
+    });
 
     if (!localStorage['theme']) {
       localStorage['theme'] = 'light';

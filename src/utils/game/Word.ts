@@ -1,8 +1,10 @@
 export default class Word {
 
-  word: string = '';
-  opened: boolean = false;
-  player: string = '';
+  word = '';
+  uncovered = false;
+  failed = false;
+  player = '';
+  points = 0;
 
   constructor(init?: Partial<Word>) {
     Object.assign(this, init);

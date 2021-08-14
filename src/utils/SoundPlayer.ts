@@ -1,6 +1,6 @@
 export class SoundPlayer {
 
-  private sfxList: Array<string> = [
+  private sfxList: string[] = [
     'correct_letter.wav',
     'countdown_over.wav',
     'countdown.wav',

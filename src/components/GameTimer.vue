@@ -5,7 +5,7 @@
       <div
         class="game-timer-line"
         :class="{danger: timeAlmostOver}"
-        :style="{width: `${$store.state.gameState.time * 99 / max +1}%`}"/>
+        :style="{width: `${time * 99 / max +1}%`}"/>
     </div>
   </div>
 </template>
@@ -19,38 +19,52 @@ import { Options, Vue } from 'vue-class-component';
     max: {type: Number, default: 120}
   },
 
-  emits: ['expired'],
+  emits: ['expired', 'almost-over'],
 
   data: () => ({
     timerId: null,
-    timeAlmostOver: false
+    timeAlmostOver: false,
+    time: 60*2
   }),
 
   methods: {
 
     decrease() {
-      if (this.$store.state.gameState.time > 0) {
-        this.$store.state.gameState.time --;
+      if (this.time > 0) {
+        this.time --;
 
-        if (this.$store.state.gameState.time == 20) {
+        if (this.time == 20) {
           this.timeAlmostOver = true;
+          this.$emit('almost-over');
         }
 
         if (
           (
-            this.$store.state.gameState.time <= 20
-            && this.$store.state.gameState.time % 5 == 0
+            this.time <= 20
+            && this.time % 5 == 0
           )
-          || this.$store.state.gameState.time <= 5
+          || this.time <= 5
 
         ) {
           soundPlayer.playSfx('time_almost_over');
         }
       } else {
         this.$emit('expired');
+        clearInterval(this.timerId);
       }
     }
 
+  },
+
+  watch: {
+    '$store.state.gameState.lvlGenerated' (val) {
+      if (val) {
+        clearInterval(this.timerId);
+        this.time = 120;
+        this.timeAlmostOver = false;
+        this.timerId = setInterval(this.decrease, 1000);
+      }
+    }
   },
 
   mounted () {

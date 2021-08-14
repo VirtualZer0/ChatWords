@@ -2,6 +2,8 @@ import { createStore, Store } from 'vuex'
 import { InjectionKey } from 'vue'
 import { RootState } from './classes/RootState';
 import Letter from '@/utils/game/Letter';
+import Level from '@/utils/game/Level';
+import Player from '@/utils/game/Player';
 
 export const key: InjectionKey<Store<RootState>> = Symbol()
 
@@ -16,21 +18,11 @@ export const store = createStore<RootState>({
     useHiddenWords: true,
 
     gameState: {
-      letters: [
-        new Letter({letter: 'Т', points: 4}),
-        new Letter({ letter: 'В', points: 2 }),
-        new Letter({ letter: 'У', points: 1 }),
-        new Letter({ letter: 'З', points: 1 }),
-        new Letter({ letter: 'Я', points: 2 }),
-        new Letter({ letter: 'К', points: 3 }),
-      ],
-      words: [],
       players: [],
 
-      level: 1,
-      points: 0,
-      maxPoints: 0,
-      donePoints: 0,
+      lvlData: new Level({}),
+      lvlNumber: 1,
+      lvlGenerated: false,
 
       time: 2*60
     }
@@ -54,6 +46,43 @@ export const store = createStore<RootState>({
 
     SET_CHANNEL(state, payload: string) {
       state.channel = payload
+    },
+
+    SET_GEN_LEVEL_STATE(state, payload: boolean) {
+      state.gameState.lvlGenerated = payload;
+    },
+
+    SET_LEVEL(state, payload: Level) {
+      state.gameState.lvlData = payload;
+    },
+
+    SET_LEVEL_NUMBER(state, payload: number) {
+      state.gameState.lvlNumber = payload;
+    },
+
+    APPLY_PLAYER_POINTS(state, payload: {[key: string]: number}) {
+      for (const [key, value] of Object.entries(payload)) {
+        let player = state.gameState.players.find(storedPlayer => storedPlayer.name == key);
+        if (player) {
+          player.addPoints(value);
+        }
+        else {
+          player = new Player(key);
+          state.gameState.players.push(player);
+        }
+      }
+
+    },
+
+    RESET_LAST_PLAYER_POINTS(state) {
+      state.gameState.players.forEach(player => {
+        player.resetLastPoints();
+      });
+    },
+
+    RESET_GAME_STATE(state) {
+      state.gameState.lvlNumber = 1;
+      state.gameState.players = [];
     }
   },
 
@@ -74,7 +103,6 @@ export const store = createStore<RootState>({
     },
 
     saveSettings({state}) {
-
       localStorage.setItem('settings', JSON.stringify({
         bestLevel: state.bestLevel,
         useFakeLetters: state.useFakeLetters,
@@ -90,9 +118,29 @@ export const store = createStore<RootState>({
       commit('SET_CHANNEL', payload);
       dispatch('saveSettings');
 
+    },
+
+    setGenLevelState({commit}, payload: boolean) {
+      commit('SET_GEN_LEVEL_STATE', payload);
+    },
+
+    setLevel({dispatch, commit}, payload: Level) {
+      commit('SET_LEVEL', payload);
+      dispatch('setGenLevelState', true);
+    },
+
+    setLevelNumber({ commit }, payload: number) {
+      commit('SET_LEVEL_NUMBER', payload);
+    },
+
+    applyPlayerPoints({commit}, payload: {[key: string]: number}) {
+      commit('APPLY_PLAYER_POINTS', payload);
+    },
+
+    resetLastPlayerPoints({ commit }) {
+      commit('RESET_LAST_PLAYER_POINTS');
     }
   },
 
-  modules: {
-  }
+  modules: {}
 })

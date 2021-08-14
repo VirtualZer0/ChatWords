@@ -3,6 +3,7 @@
     <div
       class="letter-visual-self" :class="{
         red: letter.fake && letter.uncovered,
+        animated: uncoverAnim,
         orange: letter.hidden
       }">
       {{displayedLetter}}
@@ -17,8 +18,12 @@ import { Options, Vue } from 'vue-class-component';
 
 @Options({
   props: {
-    letter: Letter
+    letter: Object
   },
+
+  data: () => ({
+    uncoverAnim: false
+  }),
 
   computed: {
     displayedLetter () {
@@ -28,6 +33,14 @@ import { Options, Vue } from 'vue-class-component';
       else {
         return this.letter.letter;
       }
+    }
+  },
+
+  watch: {
+    "letter.uncovered" () {
+
+      this.uncoverAnim = true;
+      setTimeout(() => this.uncoverAnim = false, 1100);
     }
   }
 })
@@ -55,17 +68,39 @@ export default class LetterVisual extends Vue {
 
   &-points {
     position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: var(--c_purple-advanced);
     color: var(--c_bg);
     width: 25px;
     height: 25px;
-    font-size: 21px;
-    text-align: center;
+    font-size: 18px;
     border-radius: 100%;
     right: -7px;
     bottom: -7px;
   }
 
+  &-self.animated {
+    transition: color .3s ease-out;
+    animation: letter-visual-uncover ease-in-out 1s;
+  }
+
 }
 
+@keyframes letter-visual-uncover {
+
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+
+}
 </style>
