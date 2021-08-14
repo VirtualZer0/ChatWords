@@ -15,7 +15,7 @@
         </div>
 
         <div class="game-screen-progress-points" :class="{orange: points >= donePoints}">
-          <div class="title">{{points}}/{{maxPoints}}</div>
+          <div class="title">{{points}}/{{donePoints}}</div>
           <div class="subtitle">{{$t('points')}}</div>
           <div class="subcircle"/>
           <svg class="subprogress" viewPort="0 0 180 180" version="1.1" xmlns="http://www.w3.org/2000/svg">
