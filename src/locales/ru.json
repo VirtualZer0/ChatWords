@@ -16,5 +16,17 @@
   "gameModificator1Red1Orange": "Здесь есть <span class=\"red\">фальшивая</span> и <span class=\"orange\">скрытая</span> буквы",
   "gameModificator2Red1Orange": "Здесь есть <span class=\"red\">2 фальшивых</span> и <span class=\"orange\">1 скрытая</span> буквы",
   "gameModificator2Red2Orange": "Здесь есть <span class=\"red\">2 фальшивых</span> и <span class=\"orange\">2 скрытых</span> буквы",
-  "playerAddWord": "угадывает слово"
+  "playerAddWord": "угадывает слово",
+  "gameOver": "ИГРА ЗАВЕРШЕНА",
+  "playersTableAllTime": "Все время",
+  "playersTableLastLevel": "Последний уровень",
+  "strangeNickname1": "Очень смешно",
+  "strangeNickname2": "А теперь, пожалуйста, введи настоящее имя канала",
+  "newBestLevel": " - Рекорд!",
+  "noPlayersInTable": "Похоже, никто не пришел",
+  "retry": "Заново",
+  "exit": "Выход",
+  "next": "Далее",
+  "levelComplete": "Уровень пройден",
+  "nextLevel": "Следующий уровень"
 }

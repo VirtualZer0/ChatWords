@@ -10,7 +10,7 @@
 
       <div class="game-screen-progress">
         <div class="game-screen-progress-level">
-          <div class="title">{{/*$store.state.gameState.lvlNumber*/lvlNum}}</div>
+          <div class="title">{{$store.state.gameState.lvlNumber}}</div>
           <div class="subtitle">{{$t('level')}}</div>
         </div>
 
@@ -79,10 +79,7 @@ import genWorker from '../utils/GenWorker';
     wordsLeft: 0,
 
     newWordMessage: '',
-    newWordAppear: false,
-
-    // Temporary level count
-    lvlNum: 1
+    newWordAppear: false
   }),
 
   methods: {
@@ -112,33 +109,18 @@ import genWorker from '../utils/GenWorker';
 
       this.$store.dispatch('applyPlayerPoints', this.players);
 
-      setTimeout(this.points >= this.donePoints ? this.nextLevel : this.gameOver, 3000);
+      setTimeout(this.points >= this.donePoints ? this.nextLevel : this.gameOver, 4000);
     },
 
     nextLevel() {
       soundPlayer.playSfx('level_complete');
-
-      // Temporary loop
-      this.$store.dispatch('setGenLevelState', false);
-      this.lvlNum ++;
-      genWorker.postMessage({
-        type: 'genLevel',
-        payload: {
-          level: this.lvlNum,
-          settings: {
-            useFakeLetters: true,
-            useHiddenLetters: true
-          }
-        }
-      });
-
-      this.points = 0;
-      this.timeOut = false;
+      this.$store.dispatch('applyEarnedPoints', this.points);
+      this.$router.push('/nextlevel');
     },
 
     gameOver() {
       soundPlayer.playSfx('game_over');
-      this.$router.push('/');
+      this.$router.push('/gameover');
     },
 
     uncoverLetters () {
@@ -171,10 +153,10 @@ import genWorker from '../utils/GenWorker';
 
         if (!word.uncovered && word.word == msg.text.toLowerCase()) {
           word.uncovered = true;
+          msg.userName = msg.userName.replace('wwoolaa', 'Псевдотвузяк');
           word.player = msg.userName;
           this.points += word.points;
           this.wordsLeft --;
-          console.log(this.wordsLeft);
           this.showMessage(msg.userName, word.word);
 
           if (this.points >= this.donePoints && !this.goalReached) {
@@ -182,7 +164,7 @@ import genWorker from '../utils/GenWorker';
             this.goalReached = true;
           }
           else {
-            soundPlayer.playSfx('correct_letter');
+            soundPlayer.playSfx('correct_word');
           }
 
 

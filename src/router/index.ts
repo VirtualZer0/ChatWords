@@ -10,7 +10,17 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/game',
     name: 'Game',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Game.vue')
+    component: () => import(/* webpackChunkName: "game" */ '../views/Game.vue')
+  },
+  {
+    path: '/gameover',
+    name: 'GameOver',
+    component: () => import(/* webpackChunkName: "gameover" */ '../views/GameOver.vue')
+  },
+  {
+    path: '/nextlevel',
+    name: 'NextLevel',
+    component: () => import(/* webpackChunkName: "nextlevel" */ '../views/NextLevel.vue')
   }
 ]
 

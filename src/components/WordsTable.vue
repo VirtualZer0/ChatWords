@@ -36,7 +36,7 @@ export default class WordsTable extends Vue {
   row-gap: 16px;
   column-gap: 20px;
   padding: 20px;
-  @include basic-neumorph-shadow(10px, 14px, 0);
+  @include basic-neumorph-shadow(8px, 16px, 0);
   border-radius: 30px;
 
   &-word {
@@ -99,7 +99,7 @@ export default class WordsTable extends Vue {
     }
 
     .words-table-nickname {
-      overflow: visible;
+      overflow: hidden;
       opacity: 1;
       transform: scale(1);
       text-shadow: 0px 0px 10px rgba(0,0,0,0);

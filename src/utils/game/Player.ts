@@ -12,8 +12,4 @@ export default class Player {
     this.allPoints += points;
     this.lastPoints += points;
   }
-
-  public resetLastPoints(): void {
-    this.lastPoints = 0;
-  }
 }

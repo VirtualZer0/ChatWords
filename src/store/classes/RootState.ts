@@ -23,6 +23,7 @@ export interface RootStorageGameState {
   lvlNumber: number;
   lvlGenerated: boolean;
   players: Player[];
+  earnedPoints: number;
   time: number;
 
 }

@@ -25,17 +25,6 @@ declare global {
 
         case 'loadDictionaryDone':
           this.$store.dispatch('setCurrentWordsCount', ev.data.payload.wordsCount);
-
-          genWorker.postMessage({
-            type: 'genLevel',
-            payload: {
-              level: 1,
-              settings: {
-                useFakeLetters: true,
-                useHiddenLetters: true
-              }
-            }
-          })
           break;
 
         case 'genLevelDone':

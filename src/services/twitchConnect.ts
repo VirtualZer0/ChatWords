@@ -179,7 +179,6 @@ export class TwitchConnect {
         parsedMessage.tags = keyedTags;
 
         parsedMessage.username = rawMessage.slice(tagIndex + 2, rawMessage.indexOf('!'));
-        parsedMessage.username = parsedMessage.username.replace('wwoolaa', 'Твузяк'); // Small easter-egg
         parsedMessage.command = rawMessage.slice(userIndex + 1, commandIndex);
         parsedMessage.channel = rawMessage.slice(commandIndex + 1, channelIndex);
         parsedMessage.message = rawMessage.slice(messageIndex + 1);

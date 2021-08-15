@@ -56,6 +56,7 @@ import Logo from '@/components/Logo.vue'
 import Countdown from '@/components/Countdown.vue';
 
 import twitch from '../services/twitchConnect';
+import genWorker from '../utils/GenWorker'
 
 @Options({
   components: {
@@ -71,6 +72,17 @@ import twitch from '../services/twitchConnect';
   methods: {
     startCountdown() {
       this.buttonPressed = true;
+
+      genWorker.postMessage({
+        type: 'genLevel',
+        payload: {
+          level: 1,
+          settings: {
+            useFakeLetters: true,
+            useHiddenLetters: true
+          }
+        }
+      })
 
       if (this.twitchChannel != '') {
         this.twitchChannel = this.twitchChannel.replace('https://www.twitch.tv/', '');
@@ -197,14 +209,14 @@ export default class Main extends Vue {}
       transition: box-shadow .1s ease-in-out;
       width: 50%;
       height: 75px;
-      @include trans-neumorph-shadow(10px, 18px, 0, #7A6CCC, #A492FF);
+      @include trans-neumorph-shadow(6px, 12px, 0, #7A6CCC, #A492FF);
       border-radius: 25px;
       font-size: 28px;
       font-weight: bold;
     }
 
     &-button.pressed {
-      @include trans-neumorph-shadow(10px, 18px, 1, #7A6CCC, #A492FF);
+      @include trans-neumorph-shadow(6px, 12px, 1, #7A6CCC, #A492FF);
     }
   }
 
