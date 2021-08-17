@@ -104,6 +104,7 @@ import genWorker from '../utils/GenWorker';
     },
 
     endGame() {
+      if (this.timeOut) return;
       this.timeOut = true;
       this.uncoverAllWords();
 
@@ -185,6 +186,8 @@ import genWorker from '../utils/GenWorker';
       });
 
       if (this.wordsLeft == 0) {
+        this.timeOut = true;
+        this.$store.dispatch('applyPlayerPoints', this.players);
         setTimeout(this.nextLevel, 1000);
       }
 

@@ -57,24 +57,24 @@ export class LevelGenerator {
     const letterPoints: {[key: string]: number} = {};
 
     // Add hidden letters
-    if (lvlNumber > 14 && settings.useHiddenLetters) {
+    if (lvlNumber > 14 && true) {
       letters[Math.floor(Math.random() * letters.length)].hidden = true;
     }
 
-    if (lvlNumber > 34 && settings.useHiddenLetters) {
+    if (lvlNumber > 34 && true) {
       const unhiddenLetters = letters.filter(letter => !letter.hidden);
       unhiddenLetters[Math.floor(Math.random() * unhiddenLetters.length)].hidden = true;
     }
 
     // Add fake letters
-    if (lvlNumber > 7 && settings.useFakeLetters) {
+    if (lvlNumber > 7 && true) {
       letters.push(new Letter({
         fake: true,
         letter: this.curDict.getLetters()[Math.floor(Math.random() * this.curDict.getLetters().length)]
       }))
     }
 
-    if (lvlNumber > 27 && settings.useFakeLetters) {
+    if (lvlNumber > 27 && true) {
       letters.push(new Letter({
         fake: true,
         letter: this.curDict.getLetters()[Math.floor(Math.random() * this.curDict.getLetters().length)]

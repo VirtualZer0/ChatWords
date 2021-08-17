@@ -1,6 +1,6 @@
 <template>
   <div class="words-table">
-    <div class="words-table-word" :class="{uncovered: word.uncovered, failed: word.failed}" v-for="word in words" :key="word.word">
+    <div class="words-table-word" :class="{uncovered: word.uncovered, failed: word.failed}" v-for="word in words" :key="word.word" @click="openWiktionary(word)">
       <div class="words-table-letters">
         <span class="letter" v-for="(letter, key) in word.word" :key="key" :data-letter="letter">{{letter}}</span>
       </div>
@@ -18,6 +18,13 @@ import { Options, Vue } from 'vue-class-component';
 @Options({
   props: {
     words: Array
+  },
+
+  methods: {
+    openWiktionary(word: Word) {
+      if (!word.uncovered) return;
+      window.open(`https://ru.wiktionary.org/wiki/${word.word}`, '_blank')
+    }
   }
 })
 export default class WordsTable extends Vue {
@@ -86,6 +93,7 @@ export default class WordsTable extends Vue {
 
   &-word.uncovered {
     @include basic-neumorph-shadow(4px, 8px, 1);
+    cursor: pointer;
 
     .letter {
       background: rgba(0,0,0,0);

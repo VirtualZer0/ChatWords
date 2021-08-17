@@ -10,7 +10,7 @@
   "words": "слов",
   "nowInDatabase": "сейчас в базе",
   "points": "очки",
-  "gameInfo": "Составьте <span class=\"orange\">существительное</span> из букв ниже",
+  "gameInfo": "Составьте <span class=\"orange\">любое слово</span> из букв ниже",
   "gameNoModificators": "Отправьте отгаданное слово в <span class=\"orange\">чат</span>",
   "gameModificator1Red": "Здесь есть одна <span class=\"red\">фальшивая</span> буква",
   "gameModificator1Red1Orange": "Здесь есть <span class=\"red\">фальшивая</span> и <span class=\"orange\">скрытая</span> буквы",

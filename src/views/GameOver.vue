@@ -75,7 +75,6 @@ import genWorker from '../utils/GenWorker'
     },
 
     startGame() {
-
       this.$router.push('/game');
     },
 
