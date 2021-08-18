@@ -7,7 +7,7 @@
 <a href="https://vuejs.org" alt="VueJS">
   <img src="https://img.shields.io/github/package-json/dependency-version/virtualzer0/ChatWords/vue" /></a>
 
-![splash](../img/cover.png)
+![splash](./public/img/cover.png)
 
 
 
