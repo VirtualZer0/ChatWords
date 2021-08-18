@@ -40,6 +40,7 @@ body {
   font-family: 'M PLUS Rounded 1c', Inter, Arial, sans-serif;
   background: var(--c_bg);
   transition: background-color .2s ease-out;
+  user-select: none;
 }
 
 button {
