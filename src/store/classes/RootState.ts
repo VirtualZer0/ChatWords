@@ -8,6 +8,7 @@ export interface RootState {
   currentWordsCount: number;
   bestLevel: number;
   channel: string;
+  gameStarted: boolean;
 
   useFakeLetters: boolean;
   useHiddenLetters: boolean;

@@ -108,6 +108,7 @@ import genWorker from '../utils/GenWorker'
 
   mounted () {
     this.twitchChannel = this.$store.state.channel;
+    this.$store.commit('SET_GAME_STARTED');
   }
 })
 export default class Main extends Vue {}

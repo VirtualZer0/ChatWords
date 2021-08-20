@@ -60,6 +60,8 @@ import genWorker from '../utils/GenWorker'
 
     startCountdown() {
       this.resetGame();
+      this.$store.dispatch('setGenLevelState', false);
+
       genWorker.postMessage({
         type: 'genLevel',
         payload: {
@@ -83,6 +85,13 @@ import genWorker from '../utils/GenWorker'
       this.$router.push('/');
     }
   },
+
+  beforeMount () {
+    if (!this.$store.state.gameStarted) {
+      this.$router.push('/');
+      return;
+    }
+  }
 })
 export default class GameOver extends Vue {}
 </script>

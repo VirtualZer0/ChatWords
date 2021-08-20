@@ -66,6 +66,7 @@ import genWorker from '../utils/GenWorker'
 
     startCountdown() {
       this.$store.dispatch('setLevelNumber', this.$store.state.gameState.lvlNumber + this.stars);
+      this.$store.dispatch('setGenLevelState', false);
 
       genWorker.postMessage({
         type: 'genLevel',
@@ -93,6 +94,11 @@ import genWorker from '../utils/GenWorker'
   },
 
   beforeMount() {
+    if (!this.$store.state.gameStarted) {
+      this.$router.push('/');
+      return;
+    }
+
     const ratio = this.$store.state.gameState.earnedPoints/this.$store.state.gameState.lvlData.maxPoints;
 
     if (ratio >= .75 && ratio < .87) {
@@ -108,7 +114,7 @@ import genWorker from '../utils/GenWorker'
     }
 
     this.$store.dispatch('saveSettings');
-  }
+  },
 })
 export default class NextLevel extends Vue {}
 </script>

@@ -12,6 +12,7 @@ export const store = createStore<RootState>({
     currentWordsCount: 0,
     bestLevel: 0,
     channel: '',
+    gameStarted: false,
 
     useFakeLetters: true,
     useHiddenLetters: true,
@@ -34,6 +35,10 @@ export const store = createStore<RootState>({
   mutations: {
     SET_CURRENT_WORDS_COUNT(state, payload: number) {
       state.currentWordsCount = payload;
+    },
+
+    SET_GAME_STARTED(state) {
+      state.gameStarted = true;
     },
 
     SET_SAVED_SETTINGS(state, payload: any) {
@@ -95,6 +100,7 @@ export const store = createStore<RootState>({
       if (state.bestLevel < state.gameState.lvlNumber) {
         state.bestLevel = state.gameState.lvlNumber;
       }
+
       state.gameState.lvlNumber = 1;
       state.gameState.players = [];
     }

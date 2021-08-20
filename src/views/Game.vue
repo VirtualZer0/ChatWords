@@ -247,6 +247,10 @@ import genWorker from '../utils/GenWorker';
 
   // Get data from store
   beforeMount() {
+    if (!this.$store.state.gameStarted) {
+      this.$router.push('/');
+      return;
+    }
     this.loadLevel();
     twitch.events.onMessage = this.newMessage;
   },
