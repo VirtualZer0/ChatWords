@@ -41,6 +41,22 @@ body {
   background: var(--c_bg);
   transition: background-color .2s ease-out;
   user-select: none;
+  overflow-y: overlay;
+  scrollbar-width: thin;
+  scrollbar-color: var(--c_orange) rgba(0,0,0,0);
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: none;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--c_orange);
+  border-radius: 8px;
 }
 
 button {

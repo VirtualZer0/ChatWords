@@ -32,7 +32,7 @@
     </main>
 
     <footer class="nextlevel-screen-footer">
-      <button class="nextlevel-screen-retry" @click="startCountdown"><span class="mdi mdi-motion-play-outline"/>{{$t('next')}}</button>
+      <button class="nextlevel-screen-next" @click="startCountdown"><span class="mdi mdi-motion-play-outline"/>{{$t('next')}} ({{autoStartCountdown}})</button>
       <button class="nextlevel-screen-exit" @click="exit"><span class="mdi mdi-exit-to-app"/>{{$t('exit')}}</button>
     </footer>
   </div>
@@ -56,7 +56,9 @@ import genWorker from '../utils/GenWorker'
   data: () => ({
     countdownStarted: false,
     stars: 1,
-    nextLevel: 0
+    nextLevel: 0,
+    autoStartTimerId: null,
+    autoStartCountdown: 10
   }),
 
   methods: {
@@ -80,6 +82,18 @@ import genWorker from '../utils/GenWorker'
       });
 
       this.countdownStarted = true;
+    },
+
+    autoStartCountdownDecrease() {
+
+      if (this.autoStartCountdown > 0) {
+        this.autoStartCountdown --;
+      }
+      else if (!this.countdownStarted) {
+        this.startCountdown();
+        clearInterval(this.autoStartTimerId);
+      }
+
     },
 
     startGame() {
@@ -114,7 +128,15 @@ import genWorker from '../utils/GenWorker'
     }
 
     this.$store.dispatch('saveSettings');
+
+    this.autoStartTimerId = setInterval(this.autoStartCountdownDecrease, 1000);
   },
+
+  beforeUnmount () {
+    if (this.autoStartTimerId) {
+      clearInterval(this.autoStartTimerId);
+    }
+  }
 })
 export default class NextLevel extends Vue {}
 </script>
@@ -137,6 +159,7 @@ export default class NextLevel extends Vue {}
   }
 
   &-footer {
+    padding-bottom: 26px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -186,9 +209,9 @@ export default class NextLevel extends Vue {}
   }
 
 
-  &-retry, &-exit {
+  &-next, &-exit {
     transition: box-shadow .1s ease-in-out;
-    width: 220px;
+    width: 240px;
     height: 75px;
     @include trans-neumorph-shadow(4px, 8px, 0);
     border-radius: 25px;
@@ -201,11 +224,11 @@ export default class NextLevel extends Vue {}
     }
   }
 
-  &-retry:active, &-exit:active {
+  &-next:active, &-exit:active {
     @include trans-neumorph-shadow(4px, 8px, 1);
   }
 
-  &-retry {
+  &-next {
     margin-right: 30px;
     color: var(--c_orange);
   }

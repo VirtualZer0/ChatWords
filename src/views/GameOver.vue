@@ -28,8 +28,8 @@
     </main>
 
     <footer class="gameover-screen-footer">
-      <button class="gameover-screen-retry" @click="startCountdown"><span class="mdi mdi-refresh"/>Заново</button>
-      <button class="gameover-screen-exit" @click="exit"><span class="mdi mdi-exit-to-app"/>Выход</button>
+      <button class="gameover-screen-retry" @click="startCountdown"><span class="mdi mdi-refresh"/>{{$t('retry')}} ({{autoStartCountdown}})</button>
+      <button class="gameover-screen-exit" @click="exit"><span class="mdi mdi-exit-to-app"/>{{$t('exit')}}</button>
     </footer>
   </div>
 </template>
@@ -50,7 +50,9 @@ import genWorker from '../utils/GenWorker'
   },
 
   data: () => ({
-    countdownStarted: false
+    countdownStarted: false,
+    autoStartTimerId: null,
+    autoStartCountdown: 10
   }),
 
   methods: {
@@ -76,6 +78,18 @@ import genWorker from '../utils/GenWorker'
       this.countdownStarted = true;
     },
 
+    autoStartCountdownDecrease() {
+
+      if (this.autoStartCountdown > 0) {
+        this.autoStartCountdown --;
+      }
+      else if (!this.countdownStarted) {
+        this.startCountdown();
+        clearInterval(this.autoStartTimerId);
+      }
+
+    },
+
     startGame() {
       this.$router.push('/game');
     },
@@ -90,6 +104,14 @@ import genWorker from '../utils/GenWorker'
     if (!this.$store.state.gameStarted) {
       this.$router.push('/');
       return;
+    }
+
+    this.autoStartTimerId = setInterval(this.autoStartCountdownDecrease, 1000);
+  },
+
+  beforeUnmount () {
+    if (this.autoStartTimerId) {
+      clearInterval(this.autoStartTimerId);
     }
   }
 })
@@ -115,6 +137,7 @@ export default class GameOver extends Vue {}
 
   &-footer {
     height: 150px;
+    padding-bottom: 26px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -144,7 +167,7 @@ export default class GameOver extends Vue {}
 
   &-retry, &-exit {
     transition: box-shadow .1s ease-in-out;
-    width: 220px;
+    width: 240px;
     height: 75px;
     @include trans-neumorph-shadow(4px, 8px, 0);
     border-radius: 25px;
