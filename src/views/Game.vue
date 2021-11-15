@@ -154,7 +154,7 @@ import genWorker from '../utils/GenWorker';
 
         if (!word.uncovered && word.word == msg.text.toLowerCase()) {
           word.uncovered = true;
-          msg.userName = msg.userName.replace('wwoolaa', 'Псевдотвузяк');
+          msg.userName = msg.userName.replace('twyzis__', 'Псевдотвузяк');
           word.player = msg.userName;
           this.points += word.points;
           this.wordsLeft --;

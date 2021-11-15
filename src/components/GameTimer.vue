@@ -16,7 +16,7 @@ import { Options, Vue } from 'vue-class-component';
 
 @Options({
   props: {
-    max: {type: Number, default: 120}
+    max: {type: Number, default: 150}
   },
 
   emits: ['expired', 'almost-over'],
@@ -60,7 +60,7 @@ import { Options, Vue } from 'vue-class-component';
     '$store.state.gameState.lvlGenerated' (val) {
       if (val) {
         clearInterval(this.timerId);
-        this.time = 120;
+        this.time = 150;
         this.timeAlmostOver = false;
         this.timerId = setInterval(this.decrease, 1000);
       }

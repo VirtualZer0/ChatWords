@@ -27,7 +27,7 @@ export const store = createStore<RootState>({
 
       earnedPoints: 0,
 
-      time: 2*60
+      time: 2*60 + 30
     }
 
   },

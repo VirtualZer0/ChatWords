@@ -115,7 +115,7 @@ import genWorker from '../utils/GenWorker'
 
     const ratio = this.$store.state.gameState.earnedPoints/this.$store.state.gameState.lvlData.maxPoints;
 
-    if (ratio >= .75 && ratio < .87) {
+    if (ratio >= .70 && ratio < .87) {
       this.stars = 2;
       this.nextLevel = this.$store.state.gameState.lvlNumber + 2;
     }
