@@ -52,7 +52,7 @@ declare global {
     });
 
     if (!localStorage['theme']) {
-      localStorage['theme'] = 'light';
+      localStorage['theme'] = 'dark';
     }
 
     if (localStorage['theme'] == 'dark') {

@@ -50,7 +50,7 @@ import { Options, Vue } from 'vue-class-component';
   },
 
   mounted () {
-    this.theme = localStorage['theme'] ?? 'light';
+    this.theme = localStorage['theme'] ?? 'dark';
   }
 })
 export default class ThemeSwitcher extends Vue {}
