@@ -3,7 +3,7 @@
 <a href="#">
   <img src="https://img.shields.io/github/last-commit/virtualzer0/chatwords"/></a>
 <a href="https://chatwords.ml" alt="Website">
-  <img src="https://img.shields.io/website?down_message=offline&up_message=online&url=https%3A%2F%2Fchatwords.ml" /></a>
+  <img src="https://img.shields.io/website?down_message=offline&up_message=online&url=https%3A%2F%2Fvirtualzer0.github.io%2FChatWords%2F" /></a>
 <a href="https://vuejs.org" alt="VueJS">
   <img src="https://img.shields.io/github/package-json/dependency-version/virtualzer0/ChatWords/vue" /></a>
 
@@ -22,7 +22,7 @@ Currently supported languages:
 
 
 
-You can play it here: **[PLAY NOW](https://chatwords.ml/)**
+You can play it here: **[PLAY NOW](https://virtualzer0.github.io/ChatWords/)**
 
 
 
