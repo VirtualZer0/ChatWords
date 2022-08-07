@@ -27,7 +27,7 @@ export class SoundPlayer {
 
     for(let i = 0; i < this.sfxList.length; i++) {
 
-      fetch(`/sfx/${this.sfxList[i]}`)
+      fetch(`https://virtualzer0.github.io/ChatWords/sfx/${this.sfxList[i]}`)
       .then(res => res.arrayBuffer())
       .then(buffer => this.ctx.decodeAudioData(buffer))
       .then(audio => {

@@ -1,21 +1,22 @@
 <template>
   <div class="screen main-screen">
-    <countdown v-if="countdownStarted" @expired="startGame" :from="5"/>
+    <countdown v-if="countdownStarted" @expired="startGame" :from="5" />
     <header class="main-screen-header">
-      <logo/>
-      <theme-switcher/>
+      <logo />
+      <theme-switcher />
     </header>
     <main class="main-screen-main">
       <div class="main-screen-splashes">
-        <img src="./img/splashes/chat.png" class="main-screen-splashes-img"/>
+        <img src="https://virtualzer0.github.io/ChatWords/img/splashes/chat.png" class="main-screen-splashes-img" />
         <div class="main-screen-splashes-text">
           {{$t('splashText1')}}
         </div>
       </div>
       <div class="main-screen-login">
         <div class="main-screen-login-title">{{$t('loginTitle')}}</div>
-        <input type="text" v-model="twitchChannel" name="twitchChannel" class="main-screen-login-input"/>
-        <button class="main-screen-login-button" :class="{pressed: buttonPressed}" @click="startCountdown">{{$t('startGame')}}</button>
+        <input type="text" v-model="twitchChannel" name="twitchChannel" class="main-screen-login-input" />
+        <button class="main-screen-login-button" :class="{pressed: buttonPressed}"
+          @click="startCountdown">{{$t('startGame')}}</button>
       </div>
     </main>
     <footer class="main-screen-footer">
