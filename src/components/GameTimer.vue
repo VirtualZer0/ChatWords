@@ -16,7 +16,7 @@ import { Options, Vue } from 'vue-class-component';
 
 @Options({
   props: {
-    max: {type: Number, default: 150}
+    max: {type: Number, default: 120}
   },
 
   emits: ['expired', 'almost-over'],
