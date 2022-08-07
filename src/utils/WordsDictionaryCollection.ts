@@ -30,42 +30,42 @@ export class WordsDictionary {
 
     return Promise.all([
 
-      fetch(`./words/${source}/all.txt`)
+      fetch(`https://virtualzer0.github.io/ChatWords/words/${source}/all.txt`)
         .then(res => res.text())
         .then(res => {
           this.words = res.split(',');
           console.log(`[Words]\tLoaded ${this.words.length} words from ${source}/all.txt`);
         }),
 
-      fetch(`./words/${source}/w4candidates.txt`)
+      fetch(`https://virtualzer0.github.io/ChatWords/words/${source}/w4candidates.txt`)
         .then(res => res.text())
         .then(res => {
           this.w4candidates = res.split(',');
           console.log(`[Words]\tLoaded ${this.w4candidates.length} w4candidates from ${source}/w4candidates.txt`);
         }),
 
-      fetch(`./words/${source}/w5candidates.txt`)
+      fetch(`https://virtualzer0.github.io/ChatWords/words/${source}/w5candidates.txt`)
         .then(res => res.text())
         .then(res => {
           this.w5candidates = res.split(',');
           console.log(`[Words]\tLoaded ${this.w5candidates.length} w5candidates from ${source}/w5candidates.txt`);
         }),
 
-      fetch(`./words/${source}/w6candidates.txt`)
+      fetch(`https://virtualzer0.github.io/ChatWords/words/${source}/w6candidates.txt`)
         .then(res => res.text())
         .then(res => {
           this.w6candidates = res.split(',');
           console.log(`[Words]\tLoaded ${this.w6candidates.length} w6candidates from ${source}/w6candidates.txt`);
         }),
 
-      fetch(`./words/${source}/w7candidates.txt`)
+      fetch(`https://virtualzer0.github.io/ChatWords/words/${source}/w7candidates.txt`)
         .then(res => res.text())
         .then(res => {
           this.w7candidates = res.split(',');
           console.log(`[Words]\tLoaded ${this.w7candidates.length} w7candidates from ${source}/w7candidates.txt`);
         }),
 
-      fetch(`./words/${source}/letters.txt`)
+      fetch(`https://virtualzer0.github.io/ChatWords/words/${source}/letters.txt`)
         .then(res => res.text())
         .then(res => {
           this.letters = res.split(',');
