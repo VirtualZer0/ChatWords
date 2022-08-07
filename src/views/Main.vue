@@ -7,7 +7,7 @@
     </header>
     <main class="main-screen-main">
       <div class="main-screen-splashes">
-        <img src="/img/splashes/chat.png" class="main-screen-splashes-img"/>
+        <img src="./img/splashes/chat.png" class="main-screen-splashes-img"/>
         <div class="main-screen-splashes-text">
           {{$t('splashText1')}}
         </div>
